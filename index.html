@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sola Clean - Professional Cleaning Services</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .floating-call-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-call-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .floating-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(39, 174, 96, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .floating-header.show {
+            transform: translateY(0);
+        }
+
+        .floating-header-logo {
+            width: 60px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .floating-header-text {
+            width: 180px;
+            height: auto;
+        }
+
+        .floating-header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .floating-header-phone {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .floating-header-email {
+            background: white;
+            color: #27ae60;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .floating-header-email:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+
+        .floating-header-facebook {
+            width: 30px;
+            height: 30px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-header-facebook:hover {
+            transform: scale(1.1);
+        }
+
+        .header {
+            background: url('sola-banner.jpg') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 6rem;
+        }
+
+        .logo {
+            width: 400px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-text {
+            width: 300px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .service-icon {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            object-fit: contain;
+            height: 400px;
+            background: #f8f9fa;
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            padding-top: 5rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 0;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1rem 1rem 0.5rem 1rem;
+            color: #2c3e50;
+        }
+
+        .service-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0 1rem 1rem 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #2c3e50;
+        }
+
+        .contact-value {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .footer-contact {
+            text-align: left;
+        }
+
+        .footer-contact div {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 0;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+        }
+    </style>
+    <script>
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Prevent automatic scroll to services on page load
+            if (window.location.hash === '#services') {
+                window.location.hash = '';
+                window.scrollTo(0, 0);
+            }
+
+            // Floating header scroll control
+            const floatingHeader = document.getElementById('floatingHeader');
+            const servicesSection = document.getElementById('services');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const servicesOffset = servicesSection.offsetTop;
+                
+                if (scrollTop >= servicesOffset - 100) {
+                    floatingHeader.classList.add('show');
+                } else {
+                    floatingHeader.classList.remove('show');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // Custom scroll function for services button
+            window.scrollToServices = function(event) {
+                event.preventDefault();
+                const servicesSection = document.getElementById('services');
+                const headerHeight = 80; // Approximate height of floating header
+                const offset = servicesSection.offsetTop - headerHeight - 20; // Extra 20px buffer
+                
+                window.scrollTo({
+                    top: offset,
+                    behavior: 'smooth'
+                });
+            };
+        });
+    </script>
+</head>
+<body>
+    <div class="floating-header" id="floatingHeader">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="logo.jpg" alt="Sola Clean Logo" class="floating-header-logo">
+            <img src="sola-clean-text.png" alt="Sola Clean Text" class="floating-header-text">
+        </div>
+        <div class="floating-header-content">
+            <a href="tel:0439433155" class="floating-header-phone">📞 0439 433 155</a>
+            <a href="https://facebook.com" target="_blank" class="floating-header-facebook">
+                <img src="fb-logo.png" alt="Facebook" style="width: 100%; height: 100%; object-fit: contain;">
+            </a>
+            <a href="mailto:willsolaclean@gmail.com" class="floating-header-email">Email Us</a>
+        </div>
+    </div>
+
+    <a href="tel:0439433155" class="floating-call-button">📞 Call Now</a>
+
+    <header class="header">
+        <div class="header-content">
+            <img src="logo-bobg-cropped.png" alt="Sola Clean Logo" class="logo">
+            <p class="hero-subtitle">Professional Window, Glass, Solar Panel Cleaning and Inspections</p>
+            <p class="hero-subtitle">Residential and Commercial Properties</p>
+            <p class="hero-subtitle">Tweed Valley, Northern Rivers and Lower Gold Coast</p>
+            <a href="#services" class="cta-button" onclick="scrollToServices(event)">Our Services</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="services" class="section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="window-cleeaning.jpg" alt="Window Cleaning" class="service-icon">
+                    <h3 class="service-title">Window Cleaning</h3>
+                    <p class="service-description">Professional window cleaning for residential and commercial properties.</p>
+                </div>
+                <div class="service-card">
+                    <img src="panel-clean.jpg" alt="Solar Panel Cleaning" class="service-icon">
+                    <h3 class="service-title">Solar Panel Cleaning</h3>
+                    <p class="service-description">Expert solar panel cleaning to maximize energy efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <img src="inspections.JPG" alt="Inspections" class="service-icon">
+                    <h3 class="service-title">Inspections</h3>
+                    <p class="service-description">Comprehensive inspections for windows and solar panels.</p>
+                </div>
+                <div class="service-card">
+                    <img src="gutter-cleaning.jpg" alt="Gutter Cleaning" class="service-icon">
+                    <h3 class="service-title">Gutter Cleaning</h3>
+                    <p class="service-description">Professional gutter cleaning to prevent water damage.</p>
+                </div>
+                <div class="service-card">
+                    <img src="bird-proofing.JPG" alt="Bird Proofing" class="service-icon">
+                    <h3 class="service-title">Bird Proofing</h3>
+                    <p class="service-description">Protect your solar panels from bird damage and nesting.</p>
+                </div>
+                <div class="service-card">
+                    <img src="thermals.jpeg" alt="Thermal Imaging" class="service-icon">
+                    <h3 class="service-title">Thermal Imaging</h3>
+                    <p class="service-description">Advanced thermal imaging to detect panel issues and hotspots.</p>
+                </div>
+                <div class="service-card">
+                    <img src="exterior-cleaning.JPG" alt="Exterior Surface Cleaning" class="service-icon">
+                    <h3 class="service-title">Exterior Surface Cleaning</h3>
+                    <p class="service-description">Professional cleaning of all exterior surfaces and facades.</p>
+                </div>
+                <div class="service-card">
+                    <img src="panel-clean.jpg" alt="Hot Water System Cleaning" class="service-icon">
+                    <h3 class="service-title">Hot Water System Cleaning</h3>
+                    <p class="service-description">Expert cleaning and maintenance of hot water systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Why Solar Panel Cleaning & Inspections Matter</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div style="text-align: center;">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1167783838479948&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden;max-width:100%;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 2rem; padding-left: 2rem; position: relative;">
+                            <div style="position: absolute; left: 0; top: 0.5rem; width: 12px; height: 12px; background: #27ae60; border-radius: 50%;"></div>
+                            <strong style="color: #2c3e50; font-size: 1.4rem;">Maximize Energy Efficiency</strong><br>
+                            <span style="color: #666; font-size: 1.1rem;">Dirty panels can reduce efficiency by up to 25%, costing you money on energy bills.</span>
+                        </li>
+                        <li style="margin-bottom: 2rem; padding-left: 2rem; position: relative;">
+                            <div style="position: absolute; left: 0; top: 0.5rem; width: 12px; height: 12px; background: #27ae60; border-radius: 50%;"></div>
+                            <strong style="color: #2c3e50; font-size: 1.4rem;">Prevent Damage</strong><br>
+                            <span style="color: #666; font-size: 1.1rem;">Regular inspections catch issues early, preventing costly repairs and panel damage.</span>
+                        </li>
+                        <li style="margin-bottom: 2rem; padding-left: 2rem; position: relative;">
+                            <div style="position: absolute; left: 0; top: 0.5rem; width: 12px; height: 12px; background: #27ae60; border-radius: 50%;"></div>
+                            <strong style="color: #2c3e50; font-size: 1.4rem;">Extend Panel Lifespan</strong><br>
+                            <span style="color: #666; font-size: 1.1rem;">Proper maintenance extends the life of your solar investment by years.</span>
+                        </li>
+                        <li style="margin-bottom: 0; padding-left: 2rem; position: relative;">
+                            <div style="position: absolute; left: 0; top: 0.5rem; width: 12px; height: 12px; background: #27ae60; border-radius: 50%;"></div>
+                            <strong style="color: #2c3e50; font-size: 1.4rem;">Maintain Warranty</strong><br>
+                            <span style="color: #666; font-size: 1.1rem;">Regular cleaning and inspections help maintain your manufacturer warranty.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <img src="logo.jpg" alt="Sola Clean Logo" class="footer-logo">
+                <p style="margin-top: 1rem;">&copy; 2025 Sola Clean</p>
+            </div>
+            <div class="footer-contact">
+                <div><strong>Phone:</strong> 0439 433 155</div>
+                <div><strong>Email:</strong> <a href="mailto:willsolaclean@gmail.com" style="color: white; text-decoration: none;">willsolaclean@gmail.com</a></div>
+                <div><strong>Location:</strong> Pacific St, Kingscliff, NSW</div>
+                <div><strong>Service Areas:</strong> Tweed Valley • Northern Rivers • Lower Gold Coast</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
