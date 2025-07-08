@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sola Clean - Professional Cleaning Services</title>
+    <title>Solar Cleaning - Tweed, Northern Rivers and Gold Coast.</title>
+    <link rel="icon" type="image/png" href="newlogo.png">
     <style>
         html {
             scroll-behavior: smooth;
@@ -396,6 +397,31 @@
             .footer-contact {
                 text-align: center;
             }
+
+            .floating-header-logo {
+                width: 36px;
+            }
+            .floating-header-text {
+                width: 110px;
+            }
+            .header-content .logo {
+                width: 120px;
+            }
+            .header-content .logo-text {
+                width: 150px;
+            }
+            .floating-header-content {
+                gap: 1rem;
+            }
+            .floating-header {
+                padding: 0.5rem 1rem;
+            }
+            /* Stack video above dot points for mobile */
+            .why-section-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 2rem !important;
+            }
         }
 
         .vertical-video-wrapper {
@@ -473,6 +499,26 @@
                     }
                 });
             }
+
+            // Floating Call Button scroll control (mobile only)
+            function isMobile() {
+                return window.matchMedia('(max-width: 768px)').matches;
+            }
+            const floatingCallButton = document.getElementById('floatingCallButton');
+            function updateCallButtonVisibility() {
+                if (isMobile()) {
+                    if (window.scrollY > 100) {
+                        floatingCallButton.style.display = 'block';
+                    } else {
+                        floatingCallButton.style.display = 'none';
+                    }
+                } else {
+                    floatingCallButton.style.display = 'block';
+                }
+            }
+            window.addEventListener('scroll', updateCallButtonVisibility);
+            window.addEventListener('resize', updateCallButtonVisibility);
+            updateCallButtonVisibility();
         });
     </script>
 </head>
@@ -483,7 +529,6 @@
             <img src="sola-clean-text.png" alt="Sola Clean Text" class="floating-header-text">
         </div>
         <div class="floating-header-content">
-            <a href="tel:0439433155" class="floating-header-phone">📞 0439 433 155</a>
             <a href="https://facebook.com" target="_blank" class="floating-header-facebook">
                 <img src="fb-logo.png" alt="Facebook" style="width: 100%; height: 100%; object-fit: contain;">
             </a>
@@ -498,7 +543,7 @@
         </div>
     </div>
 
-    <a href="tel:0439433155" class="floating-call-button">📞 Call Now</a>
+    <a href="tel:0439433155" class="floating-call-button" id="floatingCallButton">📞 Call Now</a>
 
     <header class="header">
         <div class="header-content">
@@ -506,6 +551,7 @@
             <p class="hero-subtitle">Professional Window, Glass, Solar Panel Cleaning and Inspections</p>
             <p class="hero-subtitle">Residential and Commercial Properties</p>
             <p class="hero-subtitle">Tweed Valley, Northern Rivers and Lower Gold Coast</p>
+            <a href="tel:0439433155" style="color: #fff; font-weight: bold; text-decoration: underline; margin-bottom: 1rem; margin-top: 0.5rem; display: inline-block;">Call Will on 0439 433 155</a>
             <a href="#services" class="cta-button" onclick="scrollToServices(event)">Our Services</a>
         </div>
     </header>
@@ -526,7 +572,7 @@
                 </div>
                 <div class="service-card">
                     <img src="inspections-small.jpg" alt="Inspections" class="service-icon" width="400" height="300">
-                    <h3 class="service-title">Inspections</h3>
+                    <h3 class="service-title">Solar Panel Inspections</h3>
                     <p class="service-description">Comprehensive inspections for windows and solar panels.</p>
                 </div>
                 <div class="service-card">
@@ -559,7 +605,7 @@
 
         <section class="section">
             <h2 class="section-title">Why Solar Panel Cleaning & Inspections Matter</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+            <div class="why-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
                 <div style="text-align: center;">
                     <div class="vertical-video-wrapper">
                         <video src="whyinspect-small2.mov" controls autoplay muted loop playsinline></video>
