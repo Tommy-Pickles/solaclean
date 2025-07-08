@@ -87,7 +87,10 @@
             text-decoration: none;
         }
 
-        .floating-header-email {
+        .floating-header-contact {
+            position: relative;
+        }
+        .floating-header-contact-btn {
             background: white;
             color: #27ae60;
             padding: 0.5rem 1rem;
@@ -95,11 +98,45 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
-
-        .floating-header-email:hover {
+        .floating-header-contact-btn:hover {
             background: #f8f9fa;
             transform: translateY(-1px);
+        }
+        .floating-header-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            min-width: 160px;
+            z-index: 1001;
+            flex-direction: column;
+            padding: 0.5rem 0;
+        }
+        .floating-header-dropdown.show {
+            display: flex;
+        }
+        .floating-header-dropdown a {
+            color: #27ae60;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            border-radius: 0;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .floating-header-dropdown a:hover {
+            background: #f8f9fa;
         }
 
         .floating-header-facebook {
@@ -147,7 +184,7 @@
         }
 
         .logo {
-            width: 300px;
+            width: 240px;
             height: auto;
             margin-bottom: 0.5rem;
         }
@@ -159,14 +196,14 @@
         }
 
         .hero-title {
-            font-size: 2.8rem;
+            font-size: 2.1rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 0.9rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.7rem;
             opacity: 0.9;
             font-weight: 500;
         }
@@ -360,6 +397,26 @@
                 text-align: center;
             }
         }
+
+        .vertical-video-wrapper {
+            width: 100%;
+            max-width: 270px;
+            aspect-ratio: 9/16;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vertical-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            display: block;
+        }
     </style>
     <script>
         // Page initialization
@@ -401,13 +458,28 @@
                     behavior: 'smooth'
                 });
             };
+
+            // Floating header contact dropdown
+            var contactBtn = document.getElementById('floatingHeaderContactBtn');
+            var dropdown = document.getElementById('floatingHeaderDropdown');
+            if (contactBtn && dropdown) {
+                contactBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target) && e.target !== contactBtn) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            }
         });
     </script>
 </head>
 <body>
     <div class="floating-header" id="floatingHeader">
         <div style="display: flex; align-items: center; gap: 1rem;">
-            <img src="logo.jpg" alt="Sola Clean Logo" class="floating-header-logo">
+            <img src="newlogo.png" alt="Sola Clean Logo" class="floating-header-logo">
             <img src="sola-clean-text.png" alt="Sola Clean Text" class="floating-header-text">
         </div>
         <div class="floating-header-content">
@@ -415,7 +487,14 @@
             <a href="https://facebook.com" target="_blank" class="floating-header-facebook">
                 <img src="fb-logo.png" alt="Facebook" style="width: 100%; height: 100%; object-fit: contain;">
             </a>
-            <a href="mailto:willsolaclean@gmail.com" class="floating-header-email">Email Us</a>
+            <div class="floating-header-contact">
+                <button id="floatingHeaderContactBtn" class="floating-header-contact-btn">Contact Us</button>
+                <div id="floatingHeaderDropdown" class="floating-header-dropdown">
+                    <a href="mailto:willsolaclean@gmail.com?subject=Enquiry%20from%20Sola%20Clean%20website">Email</a>
+                    <a href="tel:0439433155">Call</a>
+                    <a href="sms:0439433155">Text</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -471,7 +550,7 @@
                     <p class="service-description">Professional cleaning of all exterior surfaces and facades.</p>
                 </div>
                 <div class="service-card">
-                    <img src="panel-clean.jpg" alt="Hot Water System Cleaning" class="service-icon" width="400" height="300">
+                    <img src="hsw-small.jpg" alt="Hot Water System Cleaning" class="service-icon" width="400" height="300">
                     <h3 class="service-title">Hot Water System Cleaning</h3>
                     <p class="service-description">Expert cleaning and maintenance of hot water systems.</p>
                 </div>
@@ -482,7 +561,9 @@
             <h2 class="section-title">Why Solar Panel Cleaning & Inspections Matter</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
                 <div style="text-align: center;">
-                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1167783838479948&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden;max-width:100%;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    <div class="vertical-video-wrapper">
+                        <video src="whyinspect-small2.mov" controls autoplay muted loop playsinline></video>
+                    </div>
                 </div>
                 <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
                     <ul style="list-style: none; padding: 0; margin: 0;">
