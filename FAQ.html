@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Sola Clean</title>
+    <link rel="icon" type="image/png" href="newlogo.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            width: 100%;
+            background: #27ae60;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 0;
+            z-index: 2000;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+        }
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .navbar-links a:hover, .navbar-links a.active {
+            background: #229954;
+            color: #f8f9fa;
+        }
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+            .navbar-links {
+                gap: 1rem;
+            }
+        }
+        body {
+            padding-top: 0;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+            }
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            padding-top: 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .footer-contact {
+            text-align: left;
+        }
+
+        .footer-contact div {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html"><img src="newlogo.png" alt="Sola Clean Logo" class="navbar-logo"></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="FAQ.html" class="active">FAQ</a>
+                <a href="BLOG.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">Frequently Asked Questions</h1>
+            <div class="faq-item">
+                <div class="faq-question">How often should I clean my solar panels?</div>
+                <div class="faq-answer">We recommend at least once a year for optimal performance.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you use chemicals?</div>
+                <div class="faq-answer">No, we use deionised water as per manufacturer recommendations.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are you insured?</div>
+                <div class="faq-answer">Yes, we are fully insured for all services provided.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <img src="logo.jpg" alt="Sola Clean Logo" class="footer-logo">
+                <p style="margin-top: 1rem;">&copy; 2025 Sola Clean</p>
+            </div>
+            <div class="footer-contact">
+                <div><strong>Phone:</strong> 0439 433 155</div>
+                <div><strong>Email:</strong> <a href="mailto:willsolaclean@gmail.com" style="color: white; text-decoration: none;">willsolaclean@gmail.com</a></div>
+                <div><strong>Location:</strong> Kingscliff, NSW</div>
+                <div><strong>Service Areas:</strong> Tweed Valley • Northern Rivers • Lower Gold Coast</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
