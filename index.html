@@ -434,6 +434,10 @@
             .floating-header-contact {
                 display: none;
             }
+            /* Stack service cards vertically on mobile */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
         .vertical-video-wrapper {
             width: 100%;
@@ -455,82 +459,6 @@
             display: block;
         }
     </style>
-    <script>
-        // Page initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Prevent automatic scroll to services on page load
-            if (window.location.hash === '#services') {
-                window.location.hash = '';
-                window.scrollTo(0, 0);
-            }
-
-            // Floating header is now always visible
-            const floatingHeader = document.getElementById('floatingHeader');
-            // No scroll control needed - header is always visible
-
-            // Custom scroll function for services button
-            window.scrollToServices = function(event) {
-                event.preventDefault();
-                const servicesSection = document.getElementById('services');
-                const headerHeight = 80; // Approximate height of floating header
-                const offset = servicesSection.offsetTop - headerHeight - 20; // Extra 20px buffer
-                
-                window.scrollTo({
-                    top: offset,
-                    behavior: 'smooth'
-                });
-            };
-
-            // Floating header contact dropdown
-            var contactBtn = document.getElementById('floatingHeaderContactBtn');
-            var dropdown = document.getElementById('floatingHeaderDropdown');
-            if (contactBtn && dropdown) {
-                contactBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    dropdown.classList.toggle('show');
-                });
-                document.addEventListener('click', function(e) {
-                    if (!dropdown.contains(e.target) && e.target !== contactBtn) {
-                        dropdown.classList.remove('show');
-                    }
-                });
-            }
-
-            // Floating Call Button scroll control (mobile only)
-            function isMobile() {
-                return window.matchMedia('(max-width: 768px)').matches;
-            }
-            const floatingCallButton = document.getElementById('floatingCallButton');
-            function updateCallButtonVisibility() {
-                if (isMobile()) {
-                    if (window.scrollY > 100) {
-                        floatingCallButton.style.display = 'block';
-                    } else {
-                        floatingCallButton.style.display = 'none';
-                    }
-                } else {
-                    floatingCallButton.style.display = 'block';
-                }
-            }
-            window.addEventListener('scroll', updateCallButtonVisibility);
-            window.addEventListener('resize', updateCallButtonVisibility);
-            updateCallButtonVisibility();
-
-            // Hamburger menu toggle
-            const hamburger = document.getElementById('hamburgerBtn');
-            const nav = document.getElementById('navbarLinks');
-            hamburger.addEventListener('click', function() {
-                nav.classList.toggle('open');
-            });
-            // Close menu when a link is clicked (mobile UX)
-            nav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('open');
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="floating-header" id="floatingHeader">
@@ -677,5 +605,54 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Hamburger and dropdown logic
+    const hamburger = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('navbarLinks');
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    }
+    // Contact dropdown logic
+    const contactBtn = document.getElementById('floatingHeaderContactBtn');
+    const dropdown = document.getElementById('floatingHeaderDropdown');
+    if (contactBtn && dropdown) {
+      contactBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+      });
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target) && e.target !== contactBtn) {
+          dropdown.classList.remove('show');
+        }
+      });
+    }
+    // Floating call button logic (if present)
+    const floatingCallButton = document.getElementById('floatingCallButton');
+    function isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
+    function updateCallButtonVisibility() {
+      if (!floatingCallButton) return;
+      if (isMobile()) {
+        if (window.scrollY > 100) {
+          floatingCallButton.style.display = 'block';
+        } else {
+          floatingCallButton.style.display = 'none';
+        }
+      } else {
+        floatingCallButton.style.display = 'block';
+      }
+    }
+    window.addEventListener('scroll', updateCallButtonVisibility);
+    window.addEventListener('resize', updateCallButtonVisibility);
+    updateCallButtonVisibility();
+    </script>
 </body>
 </html> 
