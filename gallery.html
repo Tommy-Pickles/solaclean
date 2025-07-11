@@ -190,7 +190,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <div class="navbar-links" id="navbarLinks">
+            <nav id="navbarLinks" class="navbar-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
                 <a href="services.html">Services</a>
@@ -198,7 +198,7 @@
                 <a href="BLOG.html">Blog</a>
                 <a href="contact.html">Contact</a>
                 <a href="gallery.html" class="active">Gallery</a>
-            </div>
+            </nav>
         </div>
     </nav>
     <main class="main-content">
@@ -319,12 +319,17 @@
             });
         });
 
-        // Hamburger menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburgerBtn');
             const nav = document.getElementById('navbarLinks');
             hamburger.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+            // Close menu when a link is clicked (mobile UX)
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('open');
+                });
             });
         });
     </script>

@@ -93,15 +93,15 @@
                 flex-direction: column;
                 gap: 1rem;
                 background: rgba(39, 174, 96, 0.98);
-                position: absolute;
+            position: absolute;
                 top: 100%;
-                left: 0;
-                right: 0;
+            left: 0;
+            right: 0;
                 padding: 1rem 0;
                 z-index: 1000;
             }
             .navbar-links.open {
-                display: flex;
+            display: flex;
             }
             .hamburger {
                 display: flex;
@@ -234,7 +234,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <div class="navbar-links" id="navbarLinks">
+            <nav id="navbarLinks" class="navbar-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
                 <a href="services.html">Services</a>
@@ -242,7 +242,7 @@
                 <a href="BLOG.html">Blog</a>
                 <a href="contact.html">Contact</a>
                 <a href="gallery.html">Gallery</a>
-            </div>
+            </nav>
         </div>
     </nav>
 
@@ -257,7 +257,7 @@
                     <img src="soft_brush_solar_clean_Kingscliff.jpg" alt="Soft brush solar panel cleaning in Kingscliff" class="faq-image">
                 </div>
                 </div>
-            </div>
+                </div>
             <div class="faq-item">
                 <div class="faq-question">Do you use chemicals?</div>
                 <div class="faq-answer">Looking after our precious environment is paramount to us, we do not use chemicals for this reason and we use deionised water as per manufacturer recommendations. Normal water carries impurities that can leave spots and scale deposits on the panels which can, over time, affect the anti-reflective (AR) coating on panels. We use a water filter that has a 2 stage filtration system. The first stage is 5 micron Carbon filter that removes any sediment, the second stage has a resin bed of positively and negatively charged beads that attact Calcium and Magnesium ions, leaving purified deionised water. Deionised water is free of minerals and impurities so it also better at picking up those impurities off your panels and removing grime, leaving a streak free finish as opposed to normal tap water.
@@ -295,12 +295,17 @@
         </div>
     </footer>
     <script>
-        // Hamburger menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburgerBtn');
             const nav = document.getElementById('navbarLinks');
             hamburger.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+            // Close menu when a link is clicked (mobile UX)
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('open');
+                });
             });
         });
     </script>

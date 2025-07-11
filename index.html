@@ -519,9 +519,15 @@
 
             // Hamburger menu toggle
             const hamburger = document.getElementById('hamburgerBtn');
-            const nav = document.getElementById('floatingHeaderNav');
+            const nav = document.getElementById('navbarLinks');
             hamburger.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+            // Close menu when a link is clicked (mobile UX)
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('open');
+                });
             });
         });
     </script>
@@ -537,7 +543,7 @@
             <span></span>
             <span></span>
         </button>
-        <nav class="floating-header-nav" id="floatingHeaderNav">
+        <nav class="floating-header-nav" id="navbarLinks">
             <a href="index.html" class="nav-link">Home</a>
             <a href="about.html" class="nav-link">About Us</a>
             <a href="services.html" class="nav-link">Services</a>
