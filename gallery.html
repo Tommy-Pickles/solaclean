@@ -204,6 +204,15 @@
             .floating-header-contact {
                 display: none;
             }
+            .main-content {
+                padding-top: 7rem;
+                padding-right: 1rem;
+                padding-bottom: 2rem;
+                padding-left: 1rem;
+            }
+            .gallery-title {
+                font-size: 1.3rem;
+            }
         }
         .main-content {
             max-width: 1000px;
@@ -237,6 +246,7 @@
         .gallery-img:hover {
             transform: scale(1.04);
             box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+            cursor: pointer;
         }
         .img-caption {
             text-align: center;
@@ -275,39 +285,6 @@
             background: none;
             border: none;
         }
-        /* Hamburger styles */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1002;
-        }
-        .hamburger span {
-            display: block;
-            width: 28px;
-            height: 4px;
-            margin: 4px 0;
-            background: #fff;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                padding-top: 7rem;
-                padding-right: 1rem;
-                padding-bottom: 2rem;
-                padding-left: 1rem;
-            }
-            .gallery-title {
-                font-size: 1.3rem;
-            }
-        }
         @media (max-width: 600px) {
             .lightbox-img {
                 max-width: 98vw;
@@ -342,7 +319,7 @@
             <a href="gallery.html" class="nav-link active">Gallery</a>
         </nav>
         <div class="floating-header-content">
-            <a href="https://facebook.com" target="_blank" class="floating-header-facebook">
+            <a href="https://www.facebook.com/profile.php?id=61574902747919" target="_blank" class="floating-header-facebook">
                 <img src="fb-logo.png" alt="Facebook" style="width: 100%; height: 100%; object-fit: contain;">
             </a>
             <div class="floating-header-contact">
@@ -486,6 +463,47 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateCallButtonVisibility);
     window.addEventListener('resize', updateCallButtonVisibility);
     updateCallButtonVisibility();
+
+    // Lightbox functionality
+    const lightboxOverlay = document.getElementById('lightboxOverlay');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryImages = document.querySelectorAll('.gallery-img');
+
+    // Add click event to all gallery images
+    galleryImages.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+            lightboxImg.src = this.src;
+            lightboxImg.alt = this.alt;
+            lightboxOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        });
+    });
+
+    // Close lightbox when clicking the close button
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', function() {
+            lightboxOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
+
+    // Close lightbox when clicking outside the image
+    lightboxOverlay.addEventListener('click', function(e) {
+        if (e.target === lightboxOverlay) {
+            lightboxOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    });
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+            lightboxOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    });
 });
 </script>
 </body>
