@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Sola Clean</title>
+    <link rel="icon" type="image/png" href="newlogo.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .floating-call-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .floating-call-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        .floating-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(39, 174, 96, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .floating-header.show {
+            transform: translateY(0);
+        }
+        .floating-header-logo {
+            width: 60px;
+            height: auto;
+            border-radius: 6px;
+        }
+        .floating-header-text {
+            width: 180px;
+            height: auto;
+        }
+        .floating-header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .floating-header-phone {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .floating-header-contact {
+            position: relative;
+        }
+        .floating-header-contact-btn {
+            background: white;
+            color: #27ae60;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .floating-header-contact-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+        .floating-header-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            min-width: 160px;
+            z-index: 1001;
+            flex-direction: column;
+            padding: 0.5rem 0;
+        }
+        .floating-header-dropdown.show {
+            display: flex;
+        }
+        .floating-header-dropdown a {
+            color: #27ae60;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+            border-radius: 0;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .floating-header-dropdown a:hover {
+            background: #f8f9fa;
+        }
+        .floating-header-facebook {
+            width: 30px;
+            height: 30px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .floating-header-facebook:hover {
+            transform: scale(1.1);
+        }
+        .floating-header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+        }
+        /* Hamburger styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 4px;
+            margin: 4px 0;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .floating-header-nav {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                background: rgba(39, 174, 96, 0.98);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 1rem 0;
+                z-index: 1000;
+            }
+            .floating-header-nav.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .floating-header-contact {
+                display: none;
+            }
+        }
+        body {
+            padding-top: 0;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 0;
+            }
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            padding-top: 6rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .footer-contact {
+            text-align: left;
+        }
+
+        .footer-contact div {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 7rem;
+                padding-right: 1rem;
+                padding-bottom: 2rem;
+                padding-left: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-header" id="floatingHeader">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="newlogo.png" alt="Sola Clean Logo" class="floating-header-logo">
+            <img src="sola-clean-text.png" alt="Sola Clean Text" class="floating-header-text">
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="floating-header-nav" id="navbarLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="FAQ.html" class="nav-link">FAQ</a>
+            <a href="BLOG.html" class="nav-link">Blog</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+        </nav>
+        <div class="floating-header-content">
+            <a href="https://www.facebook.com/profile.php?id=61574902747919" target="_blank" class="floating-header-facebook">
+                <img src="fb-logo.png" alt="Facebook" style="width: 100%; height: 100%; object-fit: contain;">
+            </a>
+            <div class="floating-header-contact">
+                <button id="floatingHeaderContactBtn" class="floating-header-contact-btn">Contact Us</button>
+                <div id="floatingHeaderDropdown" class="floating-header-dropdown">
+                    <a href="mailto:willsolaclean@gmail.com?subject=Enquiry%20from%20Sola%20Clean%20website">Email</a>
+                    <a href="tel:0439433155">Call</a>
+                    <a href="sms:0439433155">Text</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="tel:0439433155" class="floating-call-button" id="floatingCallButton">📞 Call Now</a>
+
+    <main class="main-content">
+        <section class="section">
+            <h1 class="section-title">Contact Us</h1>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p><a href="tel:0439433155">0439 433 155</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:willsolaclean@gmail.com">willsolaclean@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Kingscliff, NSW</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Service Areas</h3>
+                    <p>Tweed Valley • Northern Rivers • Lower Gold Coast</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <img src="logo.jpg" alt="Sola Clean Logo" class="footer-logo">
+                <p style="margin-top: 1rem;">&copy; 2025 Sola Clean</p>
+            </div>
+            <div class="footer-contact">
+                <div><strong>Phone:</strong> 0439 433 155</div>
+                <div><strong>Email:</strong> <a href="mailto:willsolaclean@gmail.com" style="color: white; text-decoration: none;">willsolaclean@gmail.com</a></div>
+                <div><strong>Location:</strong> Kingscliff, NSW</div>
+                <div><strong>Service Areas:</strong> Tweed Valley • Northern Rivers • Lower Gold Coast</div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Hamburger and dropdown logic
+    const hamburger = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('navbarLinks');
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    }
+    // Contact dropdown logic
+    const contactBtn = document.getElementById('floatingHeaderContactBtn');
+    const dropdown = document.getElementById('floatingHeaderDropdown');
+    if (contactBtn && dropdown) {
+      contactBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+      });
+      document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target) && e.target !== contactBtn) {
+          dropdown.classList.remove('show');
+        }
+      });
+    }
+    // Floating call button logic (if present)
+    const floatingCallButton = document.getElementById('floatingCallButton');
+    function isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
+    }
+    function updateCallButtonVisibility() {
+      if (!floatingCallButton) return;
+      if (isMobile()) {
+        if (window.scrollY > 100) {
+          floatingCallButton.style.display = 'block';
+        } else {
+          floatingCallButton.style.display = 'none';
+        }
+      } else {
+        floatingCallButton.style.display = 'block';
+      }
+    }
+    window.addEventListener('scroll', updateCallButtonVisibility);
+    window.addEventListener('resize', updateCallButtonVisibility);
+    updateCallButtonVisibility();
+    </script>
+</body>
+</html> 
