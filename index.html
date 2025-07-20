@@ -552,6 +552,16 @@
             color: inherit;
         }
 
+        .service-icon {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
         .service-title {
             font-size: 1.4rem;
             font-weight: 600;
@@ -741,7 +751,7 @@
 
     <header class="header">
         <div class="header-content">
-            <img src="logo-bobg-cropped.png" alt="Sola Clean Logo" class="logo">
+            <img src="logo-bobg-cropped.png" alt="Sola Clean Logo" class="logo" fetchpriority="high">
             <p class="hero-subtitle">Professional Solar Panel, Window and Exterior Cleaning</p>
             <p class="hero-subtitle">Residential and Commercial Properties</p>
             <p class="hero-subtitle">Tweed Valley, Northern Rivers and Lower Gold Coast</p>
@@ -818,7 +828,7 @@
             <div class="why-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
                 <div style="text-align: center;">
                     <div class="vertical-video-wrapper">
-                        <video src="solar_panel_inspections_tweed_valley_1.MP4" controls autoplay muted loop playsinline poster="Thumbnail_Will_Jones_Solar_Clean_Kingscliff.jpeg"></video>
+                        <video src="solar_panel_inspections_tweed_valley_1.MP4" controls autoplay muted loop playsinline></video>
                     </div>
                 </div>
                 <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
