@@ -240,10 +240,97 @@
         }
 
         .blog-content {
-            text-align: center;
+            text-align: left;
             font-size: 1.1rem;
             line-height: 1.8;
             color: #666;
+        }
+
+        .blog-post {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+
+        .blog-post h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .blog-post h3 {
+            color: #27ae60;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .blog-post h4 {
+            color: #2c3e50;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .blog-meta {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .blog-image {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .blog-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .blog-author {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .blog-acknowledgments {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .blog-acknowledgments h4 {
+            margin-top: 0;
+            color: #27ae60;
+        }
+
+        .blog-content a {
+            color: #27ae60;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .blog-content a:hover {
+            border-bottom: 1px solid #27ae60;
         }
 
         .footer {
@@ -338,10 +425,87 @@
     <main class="main-content">
         <section class="section">
             <h1 class="section-title">Sola Clean Blog</h1>
-            <div class="blog-content">
-                <p>Stay tuned for cleaning tips, solar news, and updates from our team!</p>
-                <p>We'll be sharing valuable insights about solar panel maintenance, window cleaning best practices, and industry updates to help you keep your property in top condition.</p>
-            </div>
+            
+            <!-- New Blog Post: The Flip Side of Solar -->
+            <article class="blog-post">
+                <h2>The Flip Side of Solar: Turning Waste into Wealth</h2>
+                <p class="blog-meta"><em>Published: June 15, 2025 4.57pm AEST</em></p>
+                
+                <div class="blog-content">
+                    <p>Australia has embraced solar energy with unmatched enthusiasm, installing nearly <a href="https://www.csiro.au/en/news/all/news/2021/may/australia-installs-record-breaking-number-of-rooftop-solar-panels" target="_blank" rel="noopener noreferrer">90 million solar panels</a> across rooftops nationwide. But as we race to decarbonise, an inconvenient truth is emerging through solar waste. Every panel has a lifespan, and millions are already approaching their end. What happens next isn't just an environmental challenge, it's an economic opportunity waiting to be mined.</p>
+                    
+                    <div class="blog-image">
+                        <img src="solaclean/solar_panel_recycling.jpeg" alt="Solar panel recycling process" class="blog-img" style="max-width: 70%; height: auto;">
+                        <p class="image-caption">Image Source: <a href="https://www.staticelectrics.com.au/electricians-blog/solar-recyling-australia/" target="_blank" rel="noopener noreferrer">Static Electrics</a></p>
+                    </div>
+                    
+                    <h3>A Mountain of Waste</h3>
+                    <p>Despite panels being designed to last 25–30 years, many are being discarded within <a href="https://www.greenmatch.co.uk/blog/2017/10/the-opportunities-of-solar-panel-recycling" target="_blank" rel="noopener noreferrer">10–12 years</a> due to rapid technological improvements, inverter failures, or minor system faults, triggering entire upgrades. As a result, over 1.5 million tonnes of solar waste could flood Australia's waste stream by 2050. Alarmingly, up to half of these panels may still be functional when retired.</p>
+                    
+                                            <p>With around 5 million modules already decommissioned annually and projections indicating up to 20 million more from programs like the <a href="https://www.dcceew.gov.au/energy/programs/cheaper-home-batteries" target="_blank" rel="noopener noreferrer">Cheaper Home Battery Scheme</a>—the scale of discarded solar is staggering.</p>
+                    
+                    <h3>Recycling Hurdles: The Long Road to Reuse</h3>
+                    <p>Only <a href="https://www.abc.net.au/news/2025-06-12/solar-waste-problem-looms-after-rooftop-panel-boom/105402628" target="_blank" rel="noopener noreferrer">10%</a> of decommissioned panels are currently recycled in Australia. Why so low? The barriers are largely logistical and economic. In many regions, transporting panels thousands of kilometres for recycling is prohibitively expensive. Remote dumping remains an unfortunate reality.</p>
+                    
+                    <p>While pioneering companies like <a href="#" target="_blank">Pan Pacific Recycling</a> near Brisbane process up to 30,000 panels per year, this is a drop in the ocean. Costs to recycle a panel range from $10 to $20, says <a href="#" target="_blank">Dr Deng from UNSW</a>, while landfill disposal can be as low as $2. Without regulation or incentive, recycling remains a hard sell.</p>
+                    
+                    <div class="blog-image">
+                        <img src="solaclean/Government_solar_policy.jpeg" alt="Government solar policy and regulation" class="blog-img">
+                        <p class="image-caption">Source: <a href="https://www.sol.news/p/election-patchwork-quilts" target="_blank" rel="noopener noreferrer">Patchwork of Regulation</a>.</p>
+                    </div>
+                    
+                    <h3>A Patchwork of Policies</h3>
+                    <p>Since 2016, <a href="https://www.dcceew.gov.au/environment/protection/waste/product-stewardship/ministers-priority-list/2021-22" target="_blank" rel="noopener noreferrer">solar waste has been recognised as a priority</a> under the Department of Climate Change, Energy, the Environment and Water Ministerial Priority List for dealing with problematic waste. But Australia still lacks a national stewardship scheme. Instead, a fragmented landscape has emerged. Victoria and South Australia have banned panels from landfill. Queensland has launched a promising pilot program in partnership with the <a href="#" target="_blank">Smart Energy Council</a>, testing solar panel collection and reuse models. Meanwhile, New South Wales has introduced the <a href="https://legislation.nsw.gov.au/view/whole/html/inforce/current/act-2025-022" target="_blank" rel="noopener noreferrer">Product Lifecycle Responsibility Act 2025</a>, enabling future mandatory product stewardship schemes.</p>
+                    
+                    <p>Still, as Darren Johannesen from the Smart Energy Council stresses, pilot programs alone won't be enough: "It's why we need action on a national scheme".</p>
+                    
+                    <h3>The Silver Lining</h3>
+                    <p>Ever wondered what's on the "flip-side" of a solar panel? Amid the waste, there's literal treasure. "The silver that's contained inside solar modules equates to, in its totality, Australia's biggest silver mine," Johannesen explains in an interview with <a href="#" target="_blank">Solar Insiders</a>. With each panel containing up to 20 grams of silver, the economic value locked in Australia's rooftop solar is staggering. Copper, too, is in critically short supply globally, with a <a href="https://www.ciphernews.com/articles/global-copper-supplies-wont-keep-up-with-demand-report/#:~:text=" target="_blank" rel="noopener noreferrer">30% shortfall projected by 2035</a>. Solar recycling, then, is not just about waste management, it's about strategic resource security.</p>
+                    
+                    <p>Johannesen states this is where "urban mining" becomes vital. Instead of digging new holes in the ground, we extract metals from existing products in what Johannesen calls a "massive multi-billion-dollar business opportunity".</p>
+                    
+                    <div class="blog-image">
+                        <img src="solaclean/silver_solar_panel_components.jpeg" alt="Silver components in solar panels" class="blog-img">
+                        <p class="image-caption">Silver is a high value resource locked up in solar panels.</p>
+                    </div>
+                    
+                    <h3>From Waste to Industry: Building Circular Jobs</h3>
+                    <p>Recycling is more than a clean up effort; it can catalyse new industries. High quality recycling plants don't just extract metals; they create jobs. "Suddenly another business is employing a lot of people and providing jobs and growth," Johannesen notes. Glass from recycled panels is already being used in bench tops in Queensland. Silicon and plastic recovery, if scaled properly, could support local manufacturing.</p>
+                    
+                    <p>Domestic access to high quality raw materials opens the door to more resilient Australian supply chains. With the proper infrastructure, we can reduce import reliance and support a closed loop solar economy.</p>
+                    
+                    <div class="blog-image">
+                        <img src="solaclean/Solar_inspections_Tweed_Heads.jpeg" alt="Solar panel inspection in Northern Rivers NSW" class="blog-img">
+                        <p class="image-caption">The Author inspecting a solar installation in Northern Rivers NSW.</p>
+                    </div>
+                    
+                    <h3>Circular Thinking for a Brighter Future</h3>
+                    <p>A linear approach, make, use and discard, won't work for clean technology. Solar needs to embrace the circular economy: design for longevity, repairability, and reuse from the outset. Rapid testing rigs like those used by <a href="#" target="_blank">Second Life Solar</a> already redeploy viable panels in new projects. Meanwhile, smarter designs could make future panels easier to dismantle and recycle.</p>
+                    
+                    <p>But without clear national leadership, this transition will stall. As the <a href="#" target="_blank">Harvard Business Review</a> reminds us, sustainable industries cannot afford to be shortsighted about the waste they create.</p>
+                    
+                    <p>Australia's solar story doesn't have to end in landfills. With coordinated action, policy reform, and investment in circular infrastructure, we can turn today's solar waste into tomorrow's economic engine.</p>
+                    
+                    <div class="blog-author">
+                        <p><strong>Author:</strong> <a href="https://www.linkedin.com/in/scientistandexperiencedarborist/" target="_blank" rel="noopener noreferrer">William Jones</a>, <a href="https://www.scu.edu.au/study/?utm_source=google&utm_medium=cpc&utm_campaign=bofu-brand-generic&utm_term=southern%20cross%20university&gad_source=1&gad_campaignid=17753317112&gbraid=0AAAAADNRDnq-lGooJj0uHUKSh05l6CnOs" target="_blank" rel="noopener noreferrer">Southern Cross University</a></p>
+                    </div>
+                    
+                    <div class="blog-acknowledgments">
+                        <h4>Acknowledgments:</h4>
+                        <p>Thank you to Darren Johannesen from Smart Energy Council for permission to cite his interview with Solar Insiders 21st May 2025</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Previous Blog Post -->
+            <article class="blog-post">
+                <h2>Why Clean Your Solar Panels Regularly?</h2>
+                <p class="blog-meta"><em>Posted on 2024-06-01 by Will Jones</em></p>
+                <div class="blog-content">
+                    <p>Stay tuned for cleaning tips, solar news, and updates from our team!</p>
+                    <p>We'll be sharing valuable insights about solar panel maintenance, window cleaning best practices, and industry updates to help you keep your property in top condition.</p>
+                </div>
+            </article>
         </section>
     </main>
 
